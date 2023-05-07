@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hpmlju"
+version = "0.1.0"
+authors = [{name = "Juan Lara", email = "julara@unal.edu.co"}]
+description = "High Performance Machine Learning in Julia"
+requires-python = ">3.8"
+dependencies = [
+    "jupytext", "jupyter-book"
+]
+
+[project.optional-dependencies]
+dev = ["neovim"]
+
+[tool.setuptools.packages.find]
+where = ["src/"]
