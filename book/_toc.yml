@@ -1,0 +1,13 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: julia-lang
+  sections:
+    - file: "notebooks/1_intro"
+- file: data-management
+- file: automatic-differentiation
+- file: deep-learning
+- file: probabilistic-programming
