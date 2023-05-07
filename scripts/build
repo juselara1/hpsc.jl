@@ -2,9 +2,8 @@
 
 function notebook() {
     local nb_folder="$1"
-    local nb_paths=`ls "${nb_folder}"`
-    for path in "${nb_paths}"; do
-        jupytext -s "${nb_folder}/${path}"
+    for path in `ls "${nb_folder}/"*.jl`; do
+        jupytext -s "${path}"
     done
     mv "${nb_folder}/"*.ipynb "book/notebooks"
 }
