@@ -9,6 +9,9 @@ chapters:
 - file: julia-lang
   sections:
     - file: "notebooks/1_intro"
+    - file: "notebooks/2_variables_operations"
+    - file: "notebooks/3_numerical_values"
+    - file: "notebooks/4_numerical_operations"
 - file: data-management
 - file: automatic-differentiation
 - file: deep-learning
