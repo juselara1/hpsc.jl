@@ -2,7 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: -all
+#     cell_metadata_filter: title,-all
 #     formats: jl:percent,ipynb
 #     text_representation:
 #       extension: .jl
@@ -32,7 +32,7 @@
 #
 # If you want to use `Julia` inside of Colab, you can add the following code at the start of your notebook, run it and reload the page.
 
-# %%
+# %% [code]
 # %%shell
 set -e
 

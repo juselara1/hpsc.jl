@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pynvim"]
+dev = ["black", "textbook-nvim"]
 
 [tool.setuptools.packages.find]
 where = ["src/"]
