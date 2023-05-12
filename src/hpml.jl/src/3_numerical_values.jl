@@ -37,23 +37,23 @@
 #
 # By default, `Julia` uses the `Int` type, which is either a 32-bit or 64-bit signed integer depending on the platform. You can check the type of an integer in `Julia` using the `typeof` function, like this:
 
-# %%
+# %% [code]
 x = 42;
 print(typeof(x))
 
 # %% [markdown]
 # You can create an integer in `Julia` by simply writing its value without any fractional component. You can also create an integer by specifying its type explicitly, as shown below:
 
-# %%
+# %% [code]
 x = Int32(42);
 print(typeof(x))
 
-# %%
+# %% [code]
 y = UInt8(255);
 print(typeof(y))
 
 # %% [markdown]
-# ## Float 
+# ## Float
 # ---
 #
 # In `Julia`, a floating-point value is a data type that represents a number with a fractional component. Floats are used to represent real numbers, which can have decimal places. `Julia` supports several floating-point types, which differ in their precision (number of bits used to represent the number) and range (largest and smallest values that can be represented):
@@ -64,16 +64,16 @@ print(typeof(y))
 #
 # You can create a float value in `Julia` by writing its value with a decimal point, like this:
 
-# %%
+# %% [code]
 x = 3.14;
 print(typeof(x))
 
-# %%
+# %% [code]
 y = 1.23f0;
 print(typeof(y))
 
 # %% [markdown]
-# When working with float values in `Julia`, it is important to keep in mind that they are not exact, and that operations involving floats may introduce rounding errors or other inaccuracies. 
+# When working with float values in `Julia`, it is important to keep in mind that they are not exact, and that operations involving floats may introduce rounding errors or other inaccuracies.
 
 # %% [markdown]
 # ## Complex
@@ -81,17 +81,17 @@ print(typeof(y))
 #
 # In `Julia`, complex numbers are a composition of two numbers (integer or float). These numbers can be defined using the `im` keyword:
 
-# %%
+# %% [code]
 x = 3im;
 print(typeof(x))
 
 # %% [markdown]
-# Complex numbers of any numerical precision can be defined in Julia. For example: 
-# %%
+# Complex numbers of any numerical precision can be defined in Julia. For example:
+# %% [code]
 x = Float64(3.0)im;
 print(typeof(x))
 
-# %%
+# %% [code]
 x = complex(1, 2);
 print(x)
 
@@ -99,11 +99,11 @@ print(x)
 # ## Rational
 # ---
 #
-# In `Julia`, rational numbers are represented using the `Rational` type. A rational number is a number that can be expressed as the ratio of two integers, in the form `p // q`, where `p` and `q` are integers and `q` is not zero. 
+# In `Julia`, rational numbers are represented using the `Rational` type. A rational number is a number that can be expressed as the ratio of two integers, in the form `p // q`, where `p` and `q` are integers and `q` is not zero.
 #
-# You can create a rational number in `Julia` by using the `//` operator to divide two integers. For example: 
+# You can create a rational number in `Julia` by using the `//` operator to divide two integers. For example:
 
-# %%
+# %% [code]
 x = 1 // 2;
 print(typeof(x))
 
@@ -118,6 +118,6 @@ print(typeof(x))
 #
 # Let's create a variable with a bool value:
 
-# %%
+# %% [code]
 x = true;
 print(typeof(x))

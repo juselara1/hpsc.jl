@@ -17,7 +17,7 @@
 # In `Julia` we can define variables that may contain data of different types. Let's see an example of how we can define a variable:
 
 # %% [code]
-x = 1 
+x = 1
 print(x)
 
 # %% [markdown]
@@ -26,7 +26,7 @@ print(x)
 # Since `Julia` is a dynamically typed language, it's possible to assign any other value to the `x` variable independent of the value's type:
 
 # %% [code]
-x = "hello" 
+x = "hello"
 print(x)
 
 # %% [markdown]
@@ -40,7 +40,7 @@ print(x)
 # This allows multiple variable assiginments by chaining the assignment `=` operator:
 
 # %% [code]
-x = y = z = 1 
+x = y = z = 1
 print(x)
 print(y)
 print(z)
@@ -49,7 +49,7 @@ print(z)
 # Likewise, if you don't want to display the assigned value, you can add the `;` symbol at the end of the line:
 
 # %% [code]
-x = "hello"; 
+x = "hello";
 
 # %% [markdown]
 # Let's see the different kind of variables and types that we can use in `Julia`.
@@ -67,14 +67,14 @@ print(const_var)
 # The redefinition of a `const` variable will throw a warning:
 
 # %% [code]
-const_var = 2; 
+const_var = 2;
 print(const_var)
 
 # %% [markdown]
 # - `global`: this defines a variable that may be used in any scope, i.e., it's a variable that is shared in all the execution.
 
 # %% [code]
-global x = 2; 
+global x = 2;
 print(x)
 
 # %% [markdown]
