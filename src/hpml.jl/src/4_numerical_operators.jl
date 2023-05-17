@@ -2,7 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: -all
+#     cell_metadata_filter: title,-all
 #     formats: jl:percent,ipynb
 #     text_representation:
 #       extension: .jl
@@ -15,7 +15,7 @@
 # # Numerical Operators
 # ---
 #
-# There are different types of operators that work between two `Julia` numbers. These include arithmetic, comparison, logical, and bitwise operators.
+# There are different types of operators that work between two `Julia` numbers. These include arithmetic, comparison, logical, bitwise and updating operators.
 
 # %% [markdown]
 # ## Arithmetic

@@ -1,7 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: -all
+#     cell_metadata_filter: title,-all
 #     formats: jl:percent,ipynb
 #     text_representation:
 #       extension: .jl
@@ -126,7 +126,7 @@ print(typeof(pat))
 # It's possible to define version numbers using the `v"` literal:
 
 # %% [code]
-version = v"0.1.0"
+version = v"0.1.0";
 print(typeof(version))
 
 # %% [markdown]

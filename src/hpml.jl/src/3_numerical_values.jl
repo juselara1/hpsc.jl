@@ -1,7 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     cell_metadata_filter: -all
+#     cell_metadata_filter: title,-all
 #     formats: jl:percent,ipynb
 #     text_representation:
 #       extension: .jl
