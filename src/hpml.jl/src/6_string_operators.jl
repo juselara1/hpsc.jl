@@ -32,6 +32,10 @@ print(x[1])
 # Likewise, it's possible to index the `begin` or the `end` of a string:
 
 # %% [code]
+
+# %% [code]
+
+# %% [code]
 print(x[begin]) 
 
 # %% [code]
@@ -119,3 +123,27 @@ print("I've $x friends")
 # %% [code]
 x = 2; 
 print("We went to $(x * 2) places")
+
+# %% [markdown]
+# ## Comparison 
+# ---
+#
+# We can use comparison operators like `==`, `>`, `<`, `<=`, `>=`, `!=` to compare two strings, for example, the following cell determines if two strings are equal:
+
+# %% [code]
+x = "hello" == "hello";
+print(x)
+
+# %% [code]
+x = "hello" == "Hello";
+print(x)
+
+# %% [markdown]
+# `Julia` allows a lexicographical comparison of strings, for example:
+
+# %% [code]
+x = "abc" < "abd"; 
+print(x)
+
+# %% [markdown]
+# This is valid since `d` is lexicographically higher than `c`. 

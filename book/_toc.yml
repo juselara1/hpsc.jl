@@ -14,6 +14,8 @@ chapters:
     - file: "notebooks/4_numerical_operators"
     - file: "notebooks/5_string_values"
     - file: "notebooks/6_string_operators"
+    - file: "notebooks/7_types"
+    - file: "notebooks/8_functions"
 - file: data-management
 - file: automatic-differentiation
 - file: deep-learning
