@@ -36,7 +36,8 @@
 # $$
 
 # %% [markdown]
- 
+#
+
 # %% [code]
 function f(x)
     x ^ 2
