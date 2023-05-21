@@ -231,3 +231,23 @@ end
 # %% [code]
 c2 = Circle{UInt8}(2);
 print(c2)
+
+# %% [markdown]
+# It's possible to define types with multiple type parameters. The following defines a struct with two different types for 2 different fields:
+
+# %% [code]
+struct Example{T1, T2}
+    data::T1
+    label::T2
+end
+
+# %% [markdown:]
+# Now, we can create an example with mixed types: 
+
+# %% [code]
+e = Example{Float64, Int32}(3.5, 1);
+print(e)
+
+# %% [code]
+e = Example{Float32, UInt8}(-1.5, 0);
+print(e)
