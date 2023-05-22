@@ -139,6 +139,54 @@ print(f_state())
 print(f_state())
 
 # %% [markdown]
+# With higher-order functions we can perform function composition, let's see the following example:
+#
+# $$
+# f: x \rightarrow x ^ 2\\
+# g: x \rightarrow x / 3\\
+# h: x \rightarrow x - 1
+# $$
+#
+# In function composition we would like to define a new function $z$ such that:
+#
+# $$
+# z = h \circ g \circ h\\
+# z: x \rightarrow (h \circ g \circ h)(x)
+# $$
+#
+# First, we can define the individual functions:
+
+# %% [code]
+f(x) = x ^ 2; 
+g(x) = x / 3;
+h(x) = x - 1;
+
+# %% [markdown]
+# Now, the composed function:
+ 
+# %% [code]
+z(x) = h(g(f(x)));
+ 
+# %% [code]
+print(z(2.5))
+
+# %% [markdown]
+# However, there's an alternative way to do function composition through the pipe `|>` operator:
+ 
+# %% [code]
+res = 2.5 |> f |> g |> h;
+print(res)
+ 
+# %% [markdown]
+# Or as a function:
+ 
+# %% [code]
+z(x) = x |> f |> g |> h;
+ 
+# %% [code]
+print(z(2.5))
+ 
+# %% [markdown]
 # ## Recursion
 # ---
 #
