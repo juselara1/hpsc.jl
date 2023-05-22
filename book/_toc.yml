@@ -16,7 +16,8 @@ chapters:
     - file: "notebooks/6_string_operators"
     - file: "notebooks/7_types"
     - file: "notebooks/8_functions"
-- file: data-management
+    - file: "notebooks/9_base_functions"
+- file: scientific-computing
 - file: automatic-differentiation
 - file: deep-learning
 - file: probabilistic-programming
