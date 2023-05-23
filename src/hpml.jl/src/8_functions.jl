@@ -163,29 +163,29 @@ h(x) = x - 1;
 
 # %% [markdown]
 # Now, the composed function:
- 
+
 # %% [code]
 z(x) = h(g(f(x)));
- 
+
 # %% [code]
 print(z(2.5))
 
 # %% [markdown]
 # However, there's an alternative way to do function composition through the pipe `|>` operator:
- 
+
 # %% [code]
 res = 2.5 |> f |> g |> h;
 print(res)
- 
+
 # %% [markdown]
 # Or as a function:
- 
+
 # %% [code]
 z(x) = x |> f |> g |> h;
- 
+
 # %% [code]
 print(z(2.5))
- 
+
 # %% [markdown]
 # ## Recursion
 # ---
