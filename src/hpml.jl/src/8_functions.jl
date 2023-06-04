@@ -33,7 +33,7 @@
 # ## Function Definition
 # ---
 #
-# Let's see an example of the `Julia` implementation of the following function:
+# Let's see an example of the `Julia` implementation of the following function $f$:
 #
 # $$
 # f: x \rightarrow x ^ 2
@@ -74,6 +74,28 @@ print(res)
 # %% [code]
 res = (x -> x ^ 0.5)(2);
 print(res)
+
+# %% [markdown]
+# In `Julia` we have two types of function's parameters:
+# - **Positional**: arguments are passed in order when the function is called.
+# - **Keyword**: the parameter name is specified when passing the argument.
+#
+# By default, a function in `Julia` uses positional arguments, however, we can use the `;` symbol to define the keyword arguments at the end of the function definition. For example:
+
+# %% [code]
+function f(x, y; z=0)
+    return x + y - z
+end;
+
+# %% [markdown]
+# In this case `z` is a keyword argument which is also optional (defaults to 0). Let's see how we can use this function:
+
+# %% [code]
+print(f(1, 2))
+print(f(1, 2, z=3))
+
+# %% [markdown]
+# As you can see, the `z` parameter must be referenced when passing a keyword argument.
 
 # %% [markdown]
 # ## Higher-Order Functions

@@ -16,6 +16,8 @@
 #
 # `Julia` has several pre-implemented functions that operate over the default primitive types that we've seen.
 
+# %% [code]
+
 # %% [markdown]
 # ## Mathematical Functions
 # ---
@@ -58,7 +60,7 @@ print(isapprox(0.1, 0.1001, rtol=0.01))
 # ## String Functions
 # ---
 #
-# There are several functions that operate on strings, specially, we find functions for: search, spell modification, and position modification.
+# There are several functions that operate on strings, specially, we find functions for: search, spell modification, and structure modification.
 
 # %% [markdown]
 # ### Search 
@@ -94,6 +96,12 @@ print(findlast('l', "hello"))
 
 # %% [code]
 print(findnext("this", "this is this", 5))
+
+# %% [markdown]
+# The `count` function computes the number of occurrences of a sequence in a string, for example:
+
+# %% [code]
+print(count("the", "I'm the man who sold the world"))
 
 # %% [markdown]
 # We can use the `length` function to get the number of characters in a `String`:
@@ -220,7 +228,7 @@ print(res.offsets)
 # %% [markdown]
 # If we want to replace a match with any other text, we can use the `replace` function.
 #
-# For instance, the following code replaces the github url with only the username and the repository:
+# For instance, the following code replaces the GitHub URL with only the username and the repository:
 
 # %% [code]
 print(replace(text, pat => s"\1/\g<repo>"))
@@ -229,3 +237,57 @@ print(replace(text, pat => s"\1/\g<repo>"))
 # ```{note} 
 # `s""` denotes a substitution string, `\1` obtains the first group, and `\g<repo>` obtains the text of the named group `repo`.
 # ```
+
+# %% [markdown]
+# ### Spell Modification 
+# ---
+#
+# Spell modification involves operations that transform the strings, for instance `uppercase` transforms a string to uppercase letters:
+
+# %% [code]
+print(uppercase("hello"))
+
+# %% [markdown]
+# Similarly, `lowercase` transforms a string to lowercase letters:
+
+# %% [code]
+print(lowercase("HeLlo")) 
+
+# %% [markdown]
+# We can also capitalize a string using the `uppercasefirst` function:
+
+# %% [code]
+print(uppercasefirst("hello world")) 
+
+# %% [markdown]
+# We can also capitalize the first letter of each word using the `titlecase` function:
+
+# %% [code]
+print(titlecase("this is a hello world example"))
+
+# %% [markdown]
+# ### Structure Modification
+# ---
+#
+# There are several functions that modify the structure of strings, for example we can reverse a string with the `reverse` function:
+
+# %% [code]
+print(reverse("hello")) 
+
+# %% [markdown]
+# We can also split a string using a separator:
+
+# %% [code]
+print(split("a,csv,format,is,separated,by,comma", ',')) 
+
+# %% [markdown]
+# For instance, we can implement a basic word tokeniser using using the space separator:
+
+# %% [code]
+print(split("this is a sentence", " "))
+
+# %% [markdown]
+# We can use the `join` function to merge multiple strings into a single one, for example:
+
+# %% [code]
+print(join(split("hello,world", ","), " "))

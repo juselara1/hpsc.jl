@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["black", "textbook-nvim"]
+dev = ["black", "textbook-nvim", "asyncmake"]
 
 [tool.setuptools.packages.find]
 where = ["src/"]

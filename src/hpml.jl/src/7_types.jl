@@ -241,7 +241,7 @@ struct Example{T1, T2}
     label::T2
 end
 
-# %% [markdown:]
+# %% [markdown]
 # Now, we can create an example with mixed types: 
 
 # %% [code]

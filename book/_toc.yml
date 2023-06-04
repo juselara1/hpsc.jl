@@ -17,6 +17,7 @@ chapters:
     - file: "notebooks/7_types"
     - file: "notebooks/8_functions"
     - file: "notebooks/9_base_functions"
+    - file: "notebooks/10_data_structures"
 - file: scientific-computing
 - file: deep-learning
 - file: probabilistic-programming

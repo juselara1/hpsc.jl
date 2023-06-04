@@ -2,7 +2,10 @@ SHELL=/bin/bash
 NB_PATH='./src/hpml.jl/src/'
 LANG="JULIA"
 
-all: build-ipynb build-book
+all: install build-ipynb build-book
+
+install:
+	pip install .[dev]
 
 build-ipynb:
 	./src/scripts/build notebook ${NB_PATH} ${LANG}
