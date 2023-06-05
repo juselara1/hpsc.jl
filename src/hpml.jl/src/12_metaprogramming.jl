@@ -8,7 +8,7 @@
 #       extension: .jl
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.14.5
+#       jupytext_version: 1.14.6
 # ---
 
 # %% [markdown]
@@ -27,33 +27,33 @@
 
 # %% [code]
 x = 1;
- 
+
 # %% [markdown]
 # `x`, `=` and `1` are symbols. We can explicitly declare a `Symbol`:
 
 # %% [code]
 s = Symbol("x");
 display(s)
- 
+
 # %% [code]
 s = Symbol("=");
 display(s)
- 
+
 # %% [markdown]
 # We can also define a `Symbol` from multiple values:
- 
+
 # %% [code]
 s = Symbol("x", "_", 1);
 display(s)
 
 # %% [markdown]
 # The `:` operator allows a simplified manner to define a `Symbol`:
- 
+
 # %% [code]
 s = :x_1;
 display(s)
 println(typeof(s))
- 
+
 # %% [markdown]
 # ## Expressions
 # ---
@@ -64,62 +64,62 @@ println(typeof(s))
 ex = :(x + 1);
 display(ex)
 println(typeof(ex))
- 
+
 # %% [markdown]
 # Each `Expr` contains `Symbols` which can be accessed through the `args` field:
- 
+
 # %% [code]
 display(ex.args)
 println(typeof(ex.args))
- 
+
 # %% [markdown]
 # In this case, we've an expression that contains two symbols (`+` and `x`) and one literal (`1`).
 #
 # We can also define expressions of multiple lines through `quote`:
- 
+
 # %% [code]
 ex = quote
     x = 1;
     x += 1;
 end;
- 
+
 # %% [markdown]
 # Let's see the expression:
- 
+
 # %% [code]
 display(ex)
 println(typeof(ex))
- 
+
 # %% [markdown]
 # We can evaluate an expression through the `eval` function:
- 
+
 # %% [code]
 eval(ex);
 println(x)
- 
+
 # %% [markdown]
 # Similar to `String`, we can interpolate literals and simbols into `Expr` using the `$` operator. For example:
- 
+
 # %% [code]
 variable = :x;
 ex = quote
     $variable = "hello";
     $variable *= " world";
 end;
- 
+
 # %% [markdown]
 # Let's see the expression:
- 
+
 # %% [code]
 display(ex)
- 
+
 # %% [markdown]
 # We can evaluate this expression:
- 
+
 # %% [code]
 eval(ex)
 println(x)
- 
+
 # %% [markdown]
 # ## Macros
 # ---
@@ -208,7 +208,7 @@ end
 
 # %% [markdown]
 # Let's use this macro:
- 
+
 # %% [code]
 @measure_avg_time begin 
     x = 2;

@@ -20,6 +20,12 @@ chapters:
     - file: "notebooks/10_data_structures"
     - file: "notebooks/11_control_flow"
     - file: "notebooks/12_metaprogramming"
-- file: scientific-computing
-- file: deep-learning
+- file: parallel-computing
+- file: data-visualization
+- file: linear-algebra
+- file: differential-equations
+- file: optimization
+- file: signal-image-processing
+- file: machine-learning
 - file: probabilistic-programming
+- file: quantum-computing
