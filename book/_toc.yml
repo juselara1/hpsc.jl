@@ -19,6 +19,7 @@ chapters:
     - file: "notebooks/9_base_functions"
     - file: "notebooks/10_data_structures"
     - file: "notebooks/11_control_flow"
+    - file: "notebooks/12_metaprogramming"
 - file: scientific-computing
 - file: deep-learning
 - file: probabilistic-programming

@@ -202,10 +202,10 @@ while x != 1
     x = Bool(x % 2) ? x * 3 + 1 : div(x, 2);
     println(x)
 end
- 
+
 # %% [markdown]
 # The code is iteratively called while `x` is different from 1.
- 
+
 # %% [markdown]
 # ### Iterator
 # ---
@@ -226,7 +226,7 @@ end
 # 3. The function must return `nothing` when the iteration must be stopped.
 #
 # Let's see an example of an iterator that increments the `pos` field and decrements the `neg` field on each iteration.
- 
+
 # %% [code]
 Base.iterate(v::Values) = return (Values(v.pos + 1, v.neg - 1), 1);
 function Base.iterate(v::Values, state::Integer)
@@ -236,17 +236,17 @@ function Base.iterate(v::Values, state::Integer)
         return nothing
     end
 end
- 
+
 # %% [markdown]
 # Let us define an initial value:
- 
+
 # %% [code]
 v = Values(3, -1);
 state = 0;
- 
+
 # %% [markdown]
 # Now, we can iterate it:
- 
+
 # %% [code]
 next = iterate(v);
 while next !== nothing
