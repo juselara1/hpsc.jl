@@ -1,0 +1,31 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+options:
+  numbered: True
+chapters:
+- file: julia-lang
+  sections:
+    - file: "notebooks/1_intro"
+    - file: "notebooks/2_variables"
+    - file: "notebooks/3_numerical_values"
+    - file: "notebooks/4_numerical_operators"
+    - file: "notebooks/5_string_values"
+    - file: "notebooks/6_string_operators"
+    - file: "notebooks/7_types"
+    - file: "notebooks/8_functions"
+    - file: "notebooks/9_base_functions"
+    - file: "notebooks/10_data_structures"
+    - file: "notebooks/11_control_flow"
+    - file: "notebooks/12_metaprogramming"
+- file: parallel-computing
+- file: data-visualization
+- file: linear-algebra
+- file: differential-equations
+- file: optimization
+- file: signal-image-processing
+- file: machine-learning
+- file: probabilistic-programming
+- file: quantum-computing

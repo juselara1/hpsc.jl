@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function notebook() {
+    local nb_folder="$1"
+    local language="$2"
+    for path in `ls "${nb_folder}/"*.jl`; do
+        jupytext -s "${path}" &
+    done
+    wait
+    for path in `ls "${nb_folder}/"*.ipynb`; do
+        modify_ipynb --notebook_path "${path}" --lang "${language}" &
+    done
+    wait
+    mv "${nb_folder}/"*.ipynb "book/notebooks"
+}
+
+$*
+exit 0
