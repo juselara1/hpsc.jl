@@ -1,0 +1,657 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1.3. Numerical Values &#8212; High Performance Machine Learning in Julia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/3_numerical_values';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4. Numerical Operators" href="4_numerical_operators.html" />
+    <link rel="prev" title="1.2. Variables" href="2_variables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    High Performance Scientific Computing in Julia
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../julia-lang.html">1. Julia Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_intro.html">1.1. Julia Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_variables.html">1.2. Variables</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3. Numerical Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_numerical_operators.html">1.4. Numerical Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_string_values.html">1.5. Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_string_operators.html">1.6. String Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_types.html">1.7. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_functions.html">1.8. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9_base_functions.html">1.9. Base Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_data_structures.html">1.10. Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_control_flow.html">1.11. Control Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_metaprogramming.html">1.12. Metaprogramming</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parallel-computing.html">2. Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-visualization.html">3. Data Management and Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linear-algebra.html">4. Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../differential-equations.html">5. Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization.html">6. Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signal-image-processing.html">7. Signal and Image Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../machine-learning.html">8. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../probabilistic-programming.html">9. Probabilistic Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum-computing.html">10. Quantum Computing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/juselara1/teoj.nvim" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/juselara1/teoj.nvim/issues/new?title=Issue%20on%20page%20%2Fnotebooks/3_numerical_values.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/3_numerical_values.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Numerical Values</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer">1.3.1. Integer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#float">1.3.2. Float</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex">1.3.3. Complex</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rational">1.3.4. Rational</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bool">1.3.5. Bool</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="numerical-values">
+<h1><span class="section-number">1.3. </span>Numerical Values<a class="headerlink" href="#numerical-values" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<p>There are different numerical values that can be defined in <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, including integers, floats, complexes, rationals, and Booleans.</p>
+<section id="integer">
+<h2><span class="section-number">1.3.1. </span>Integer<a class="headerlink" href="#integer" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>In <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, an integer is a data type that represents a whole number without a fractional component. Integers in <code class="docutils literal notranslate"><span class="pre">Julia</span></code> can be signed or unsigned and have a numerical precision.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Julia</span></code> supports the following integer types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Int8</span></code>: an 8-bit signed integer (-128 to 127)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UInt8</span></code>: an 8-bit unsigned integer (0 to 255)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int16</span></code>: a 16-bit signed integer (-32768 to 32767)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UInt16</span></code>: a 16-bit unsigned integer (0 to 65535)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int32</span></code>: a 32-bit signed integer (-2^31 to 2^31-1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UInt32</span></code>: a 32-bit unsigned integer (0 to 2^32-1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int64</span></code>: a 64-bit signed integer (-2^63 to 2^63-1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UInt64</span></code>: a 64-bit unsigned integer (0 to 2^64-1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int128</span></code>: a 128-bit signed integer (-2^127 to 2^127-1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UInt128</span></code>: a 128-bit unsigned integer (0 to 2^128-1)</p></li>
+</ul>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">Julia</span></code> uses the <code class="docutils literal notranslate"><span class="pre">Int</span></code> type, which is either a 32-bit or 64-bit signed integer depending on the platform. You can check the type of an integer in <code class="docutils literal notranslate"><span class="pre">Julia</span></code> using the <code class="docutils literal notranslate"><span class="pre">typeof</span></code> function, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can create an integer in <code class="docutils literal notranslate"><span class="pre">Julia</span></code> by simply writing its value without any fractional component. You can also create an integer by specifying its type explicitly, as shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Int32</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="float">
+<h2><span class="section-number">1.3.2. </span>Float<a class="headerlink" href="#float" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>In <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, a floating-point value is a data type that represents a number with a fractional component. Floats are used to represent real numbers, which can have decimal places. <code class="docutils literal notranslate"><span class="pre">Julia</span></code> supports several floating-point types, which differ in their precision (number of bits used to represent the number) and range (largest and smallest values that can be represented):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Float16</span></code>: also known as half-precision, uses 16 bits to represent a number, with 1 sign bit, 5 exponent bits, and 10 significand bits. This type has a range of approximately 6.10^-5 to 6.55 x 10^4 and a precision of about 3 decimal places.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Float32</span></code>: also known as single-precision, uses 32 bits to represent a number, with 1 sign bit, 8 exponent bits, and 23 significand bits. This type has a range of approximately 1.18 x 10^-38 to 3.4 x 10^38 and a precision of about 7 decimal places.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Float64</span></code>: also known as double-precision, uses 64 bits to represent a number, with 1 sign bit, 11 exponent bits, and 52 significand bits. This type has a range of approximately 2.23 x 10^-308 to 1.80 x 10^308 and a precision of about 16 decimal places.</p></li>
+</ul>
+<p>You can create a float value in <code class="docutils literal notranslate"><span class="pre">Julia</span></code> by writing its value with a decimal point, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.23f0</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When working with float values in <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, it is important to keep in mind that they are not exact, and that operations involving floats may introduce rounding errors or other inaccuracies.</p>
+</section>
+<section id="complex">
+<h2><span class="section-number">1.3.3. </span>Complex<a class="headerlink" href="#complex" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>In <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, complex numbers are a composition of two numbers (integer or float). These numbers can be defined using the <code class="docutils literal notranslate"><span class="pre">im</span></code> keyword:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="nb">im</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Complex numbers of any numerical precision can be defined in Julia. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Float64</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span><span class="nb">im</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rational">
+<h2><span class="section-number">1.3.4. </span>Rational<a class="headerlink" href="#rational" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>In <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, rational numbers are represented using the <code class="docutils literal notranslate"><span class="pre">Rational</span></code> type. A rational number is a number that can be expressed as the ratio of two integers, in the form <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">//</span> <span class="pre">q</span></code>, where <code class="docutils literal notranslate"><span class="pre">p</span></code> and <code class="docutils literal notranslate"><span class="pre">q</span></code> are integers and <code class="docutils literal notranslate"><span class="pre">q</span></code> is not zero.</p>
+<p>You can create a rational number in <code class="docutils literal notranslate"><span class="pre">Julia</span></code> by using the <code class="docutils literal notranslate"><span class="pre">//</span></code> operator to divide two integers. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">x</span></code> represents the rational number <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span></p>
+</section>
+<section id="bool">
+<h2><span class="section-number">1.3.5. </span>Bool<a class="headerlink" href="#bool" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>In <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, a bool value (short for boolean value) is a data type that can only take on one of two possible values: <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>. Bool values are commonly used in programming for logical operations, such as conditionals and loops, where the outcome depends on whether a certain condition is true or false. In <code class="docutils literal notranslate"><span class="pre">Julia</span></code>, bool values are represented using the <code class="docutils literal notranslate"><span class="pre">Bool</span></code> type, which is a subtype of the <code class="docutils literal notranslate"><span class="pre">Integer</span></code> type. The value <code class="docutils literal notranslate"><span class="pre">true</span></code> is equivalent to the integer value <code class="docutils literal notranslate"><span class="pre">1</span></code>, while the value <code class="docutils literal notranslate"><span class="pre">false</span></code> is equivalent to the integer value <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Let’s create a variable with a bool value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.8"
+        },
+        kernelOptions: {
+            name: "julia-1.8",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.8'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_variables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Variables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4_numerical_operators.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.4. </span>Numerical Operators</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer">1.3.1. Integer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#float">1.3.2. Float</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex">1.3.3. Complex</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rational">1.3.4. Rational</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bool">1.3.5. Bool</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Juan S. Lara
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
