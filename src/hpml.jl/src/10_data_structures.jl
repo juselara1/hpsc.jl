@@ -63,7 +63,7 @@ print(length(x))
 # %% [code]
 x = (true, true, true);
 print(all(x))
- 
+
 # %% [markdown]
 # Likewise, the `any` function validates if atleast one element of the `Tuple` is `true`:
 
@@ -177,10 +177,10 @@ print(x.x)
 
 # %% [markdown]
 # Likewise, we can index a `NamedTuple` using a `Symbol` (we'll talk about this later), for instance we can extract the field at the `:x` name:
- 
+
 # %% [code]
 print(x[:x])
- 
+
 # %% [markdown]
 # ### Functions
 # ---
@@ -197,10 +197,10 @@ print(length(x))
 
 # %% [code]
 print(propertynames(x))
- 
+
 # %% [markdown]
 # We can also extract its values as a `Tuple` using the `values` function:
- 
+
 # %% [code]
 print(values(x))
 
@@ -410,7 +410,7 @@ print(x)
 # ---
 #
 # Since a `Set` is an unordered collection, it can not be directly indexed.
- 
+
 # %% [markdown]
 # ### Functions
 # ---
@@ -504,7 +504,7 @@ print(x[3])
 
 # %% [code]
 print(x[3:end])
- 
+
 # %% [markdown]
 # ### Functions
 # ---
@@ -795,7 +795,7 @@ x = [
 
 # %% [markdown]
 # Now, we extract the rows using a `Vector`:
- 
+
 # %% [code]
 print(x[[1, 3], :])
 
@@ -805,33 +805,33 @@ print(x[[1, 3], :])
 # %% [code]
 y = x[x .> 3];
 print(y)
- 
+
 # %% [markdown]
 # We can combine this with logical operators to get a more complex conditional selection:
- 
+
 # %% [code]
 y = x[((x .> 3) .& (x .< 6)) .| (x .== 8)];
 print(y)
- 
+
 # %% [markdown]
 # - **Cartesian**: `Julia` has the `IndexStyle` abstract type to define a custom index for arrays, For example:
- 
+
 # %% [code]
 idx = CartesianIndex(
     (1, 1)
 );
 print(idx)
- 
+
 # %% [markdown]
 # Now we use the index:
- 
+
 # %% [code]
 res = x[idx];
 print(res)
- 
+
 # %% [markdown]
 # Likewise, the `CartesianIndices` allows to define indices for each dimension:
- 
+
 # %% [code]
 idx = CartesianIndices(
     (
@@ -839,14 +839,14 @@ idx = CartesianIndices(
     1:2
     )
 );
- 
+
 # %% [markdown]
 # We can use these indeces:
- 
+
 # %% [code]
 res = x[idx];
 print(res)
- 
+
 # %% [markdown]
 # ### Functions
 # ---
@@ -930,32 +930,32 @@ print(res)
 
 # %% [markdown]
 # We can use the `argmax` and `argmin` functions to identify the index of the maximum and minimum values respectively:
- 
+
 # %% [code]
 res = argmin(x);
 print(res)
 print(x[res])
- 
+
 # %% [code]
 res = argmax(x);
 print(res)
 print(x[res])
- 
+
 # %% [markdown]
 # These functions can also be combined with the `dims` parameter:
- 
+
 # %% [code]
 res = argmin(x; dims=(1,));
 print(res)
 print(x[res])
- 
+
 # %% [code]
 res = argmax(x; dims=(2,));
 print(x[res])
- 
+
 # %% [markdown]
 # The `sort` function allows to sort a multidimensional array:
- 
+
 # %% [code]
 x = [
     3 2 1 5 0 4 5 3;
@@ -964,15 +964,15 @@ x = [
 
 # %% [markdown]
 # We can sort on any dimension:
- 
+
 # %% [code]
 res = sort(x; dims=1);
 print(res)
- 
+
 # %% [code]
 res = sort(x; dims=2);
 print(res)
- 
+
 # %% [markdown]
 # We can use the `map` function to apply a function to each element of the array:
 
@@ -1023,11 +1023,11 @@ print(res)
 
 # %% [markdown]
 # We can combine the `reduce` function with `min` and `max` functions to get the result on a dimension:
- 
+
 # %% [code]
 res = reduce(min, x; dims=(1, ));
 print(res)
- 
+
 # %% [code]
 res = reduce(max, x; dims=(2, ));
 print(res)
