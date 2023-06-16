@@ -8,6 +8,10 @@
 #       format_name: percent
 #       format_version: '1.3'
 #       jupytext_version: 1.14.6
+#   kernelspec:
+#     display_name: Julia 1.8.1
+#     language: julia
+#     name: julia-1.8
 # ---
 
 # %% [markdown]

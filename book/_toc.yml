@@ -20,7 +20,10 @@ chapters:
     - file: "notebooks/10_data_structures"
     - file: "notebooks/11_control_flow"
     - file: "notebooks/12_metaprogramming"
+    - file: "notebooks/13_modules"
 - file: parallel-computing
+  sections:
+    - file: "notebooks/14_coroutines"
 - file: data-visualization
 - file: linear-algebra
 - file: differential-equations

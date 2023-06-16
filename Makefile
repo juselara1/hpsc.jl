@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-NB_PATH='./src/hpml.jl/src/'
+NB_PATH='./src/hpsc.jl/src/'
 LANG="JULIA"
 
 all: install build-ipynb build-book
