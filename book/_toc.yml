@@ -24,6 +24,7 @@ chapters:
 - file: parallel-computing
   sections:
     - file: "notebooks/14_coroutines"
+    - file: "notebooks/15_multithread"
 - file: data-visualization
 - file: linear-algebra
 - file: differential-equations
